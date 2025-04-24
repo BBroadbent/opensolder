@@ -82,6 +82,9 @@ Nothing is currently missing for regular functionality. However some features wo
 - Menu for changing default values
 - Better looking UI
 
+### B Broadbent TODO
+- Pullup on zero cross line (external to STM32) (10k)
+
 
 ## Links and Sources
 [The unisolder project](https://github.com/sparkybg/UniSolder-5.2)  
