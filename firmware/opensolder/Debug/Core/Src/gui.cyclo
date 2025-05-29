@@ -1,0 +1,6 @@
+../Core/Src/gui.c:107:6:init_display	1
+../Core/Src/gui.c:115:6:draw_init_display	1
+../Core/Src/gui.c:130:6:write_string	4
+../Core/Src/gui.c:146:6:draw_default_display	1
+../Core/Src/gui.c:158:6:update_display	11
+../Core/Src/gui.c:215:6:display_message	7

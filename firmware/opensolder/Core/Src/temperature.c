@@ -37,6 +37,8 @@
  */
 
 #include "temperature.h"
+#include <stdio.h>
+#include <string.h>
 
 /******    Local Function Declarations    ******/
 static void start_adc(void);
@@ -81,6 +83,9 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc) {
 // ISR: Rising edge is detected on ZERO_CROSS pin. Start TIM6, which is a delay for when the true AC zero cross happens
 static void zerocross_interrupt(uint16_t GPIO_Pin) {
 	if (GPIO_Pin == ZERO_CROSS_Pin) {
+		// char tx_buff[32];
+		// snprintf(tx_buff, sizeof(tx_buff), "Zero cross detected %d\r\n", HAL_GetTick());
+		// HAL_UART_Transmit(&huart1, tx_buff, sizeof(tx_buff), 1000);
 		HAL_TIM_Base_Start_IT(&htim6);
 		ac_delay_tick_ms = HAL_GetTick() + AC_DETECTION_INTERVAL_MS;
 	}
@@ -167,6 +172,9 @@ static void adc_complete(void) {
 		adc_deviation_check();
 		if (error_flag == SET) {
 			tip_temp = ADC_READING_ERROR;
+			char tx_buff[28];
+			snprintf(tx_buff, sizeof(tx_buff), "Error: ADC READING ERROR\r\n");
+			HAL_UART_Transmit(&huart1, tx_buff, sizeof(tx_buff), 1000);
 			error_handler();
 		} else if ((get_system_state() == ON_STATE) || (get_system_state() == STANDBY_STATE)) {
 			power_control();
@@ -241,6 +249,9 @@ uint8_t tip_check(void) {
 	uint8_t tmp_return = TIP_NOT_DETECTED;
 
 	if (tip_check_flag != WAIT) {
+		char tx_buff[34];
+		snprintf(tx_buff, sizeof(tx_buff), "Error: Tip check flag not WAIT\r\n");
+		HAL_UART_Transmit(&huart1, tx_buff, sizeof(tx_buff), 1000);
 		error_handler();
 		tmp_return = TIP_CHECK_ERROR;
 	} else if (adc_buffer_average > ADC_NO_TIP_MIN_VALUE) {
@@ -248,6 +259,9 @@ uint8_t tip_check(void) {
 	} else if (adc_buffer_average < ADC_TIP_MAX_VALUE) {
 		tmp_return = TIP_DETECTED;
 	} else {
+		char tx_buff[32];
+		snprintf(tx_buff, sizeof(tx_buff), "Tip check flag other\r\n");
+		HAL_UART_Transmit(&huart1, tx_buff, sizeof(tx_buff), 1000);
 		tmp_return = TIP_CHECK_ERROR;
 	}
 
@@ -297,6 +311,10 @@ void error_handler(void) {
 	// Turn heater hard OFF
 	HAL_GPIO_WritePin(HEATER_GPIO_Port, HEATER_Pin, OFF);
 	heater_off();
+	
+	char tx_buff[32];
+	snprintf(tx_buff, sizeof(tx_buff), "Error handler: error - %d\r\n", error_flag);
+	HAL_UART_Transmit(&huart1, tx_buff, sizeof(tx_buff), 1000);
 	tip_state = TIP_CHECK_ERROR;
 	error_flag = RESET;
 }

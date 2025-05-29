@@ -1,0 +1,13 @@
+../Core/Src/temperature.c:68:6:HAL_GPIO_EXTI_Callback	2
+../Core/Src/temperature.c:72:6:HAL_TIM_PeriodElapsedCallback	7
+../Core/Src/temperature.c:259:9:read_pcb_temperature	2
+../Core/Src/temperature.c:272:10:get_ac_delay_tick	1
+../Core/Src/temperature.c:276:6:heater_off	1
+../Core/Src/temperature.c:280:6:set_new_temp	1
+../Core/Src/temperature.c:284:10:get_set_temp	1
+../Core/Src/temperature.c:288:10:get_tip_temp	1
+../Core/Src/temperature.c:292:9:get_tip_state	1
+../Core/Src/temperature.c:296:6:error_handler	1
+../Core/Src/temperature.c:233:9:tip_check	4
+../Core/Src/temperature.c:76:6:HAL_ADC_ConvCpltCallback	16
+../Core/Src/temperature.c:304:9:get_power_bar_value	1

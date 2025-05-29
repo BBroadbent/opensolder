@@ -1,0 +1,5 @@
+../Core/Src/encoder.c:13:6:encoder_init	1
+../Core/Src/encoder.c:47:10:get_encoder_value	1
+../Core/Src/encoder.c:51:9:get_encoder_delta	2
+../Core/Src/encoder.c:60:9:encoder_overflow_check	2
+../Core/Src/encoder.c:23:9:encoder_event	5

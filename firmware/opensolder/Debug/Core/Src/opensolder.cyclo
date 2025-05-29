@@ -1,0 +1,7 @@
+../Core/Src/opensolder.c:44:6:opensolder_init	1
+../Core/Src/opensolder.c:54:6:init_mmi	1
+../Core/Src/opensolder.c:62:6:opensolder_main	1
+../Core/Src/opensolder.c:68:13:state_machine	22
+../Core/Src/opensolder.c:153:6:read_mmi	8
+../Core/Src/opensolder.c:188:6:sensor_scan	1
+../Core/Src/opensolder.c:194:9:get_system_state	1

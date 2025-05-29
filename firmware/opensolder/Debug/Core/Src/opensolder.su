@@ -1,0 +1,7 @@
+../Core/Src/opensolder.c:44:6:opensolder_init	8	static
+../Core/Src/opensolder.c:54:6:init_mmi	8	static
+../Core/Src/opensolder.c:62:6:opensolder_main	8	static
+../Core/Src/opensolder.c:68:13:state_machine	112	static
+../Core/Src/opensolder.c:153:6:read_mmi	16	static
+../Core/Src/opensolder.c:188:6:sensor_scan	8	static
+../Core/Src/opensolder.c:194:9:get_system_state	8	static

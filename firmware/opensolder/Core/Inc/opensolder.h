@@ -65,6 +65,7 @@ extern I2C_HandleTypeDef hi2c1;
 extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim6;
 extern TIM_HandleTypeDef htim7;
+extern UART_HandleTypeDef huart1;
 
 /******    Global Function Declarations    ******/
 void opensolder_init(void);

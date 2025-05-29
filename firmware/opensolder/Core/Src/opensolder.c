@@ -19,6 +19,8 @@
 #include "encoder.h"
 #include "gui.h"
 #include "temperature.h"
+#include <stdio.h>
+#include <string.h>
 
 /******    Local Function Declarations    ******/
 static void state_machine(void);
@@ -69,11 +71,18 @@ static void state_machine(void) {
 	uint8_t tool_tip_state = get_tip_state();
 
 	if (HAL_GetTick() > get_ac_delay_tick()) {
+		char tx_buff[26];
+		snprintf(tx_buff, sizeof(tx_buff), "Error: AC not detected\r\n", HAL_GetTick(), get_ac_delay_tick());
+		HAL_UART_Transmit(&huart1, tx_buff, sizeof(tx_buff), 1000);
 		error_handler();
 		display_message(AC_NOT_DETECTED);
 		system_state = ERROR_STATE;
 		return;
 	}
+
+	char tx_buff[25];
+	snprintf(tx_buff, sizeof(tx_buff), "System state %d\r\n", system_state);
+	HAL_UART_Transmit(&huart1, tx_buff, sizeof(tx_buff), 1000);
 
 	switch (system_state) {
 		case INIT_STATE:
@@ -127,6 +136,9 @@ static void state_machine(void) {
 			break;
 
 		case ERROR_STATE:
+			char tx_buff[26];
+			snprintf(tx_buff, sizeof(tx_buff), "Error: FSM error state\r\n", HAL_GetTick(), get_ac_delay_tick());
+			HAL_UART_Transmit(&huart1, tx_buff, sizeof(tx_buff), 1000);
 			error_handler();
 			system_state = INIT_STATE;
 			break;

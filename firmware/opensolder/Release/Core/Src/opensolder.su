@@ -1,0 +1,4 @@
+../Core/Src/opensolder.c:42:6:opensolder_init	8	static
+../Core/Src/opensolder.c:60:6:opensolder_main	24	static
+../Core/Src/opensolder.c:176:6:sensor_scan	8	static
+../Core/Src/opensolder.c:182:9:get_system_state	0	static

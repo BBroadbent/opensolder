@@ -1,0 +1,5 @@
+../Core/Src/gui.c:130:6:write_string	8	static
+../Core/Src/gui.c:107:6:init_display	64	static
+../Core/Src/gui.c:146:6:draw_default_display	32	static
+../Core/Src/gui.c:158:6:update_display	40	static
+../Core/Src/gui.c:215:6:display_message	32	static
